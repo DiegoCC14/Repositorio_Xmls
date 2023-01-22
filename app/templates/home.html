@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <title>Descarga XML</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
+</head>
+
+<body>
+
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="{% static 'img/hero.jpg' %}">
+        
+        <form id="form_descarga_xml" class="d-flex tm-search-form" action="{% url 'descarga_xml' %}">
+            <input id="input_url_xml_descarga" class="form-control tm-search-input" type="search" placeholder="url XML" aria-label="Search">
+            <button class="btn btn-outline-success tm-search-btn" type="button" onclick="descarga_xml()">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+    </div>
+
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            
+            <h2 class="col-6 tm-text-primary">
+                Historial de Descargas
+            </h2>
+
+        </div>
+
+        <div class="row tm-mb-90 tm-gallery">
+
+            <!-- ------------------------------------------------------------ -->
+            <!-- Element "hidden"-->        	
+            <div id="Div_XML_Historial" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5" hidden>
+
+                <figure class="effect-ming tm-video-item">
+                    
+                    <img class="img-fluid">
+                    
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                        <h2>Descargar</h2>
+                        <a onclick="descargar_xml_seleccionado(event)" >Descargar XML</a>
+                    </figcaption>
+
+                </figure>
+
+                <div class="d-flex justify-content-between tm-text-gray">
+                    <span id="fecha_creacion" class="tm-text-gray-light">18 Oct 2020</span>
+                    <span>Id: <span id="id_xml">???</span> </span>
+                </div>
+                <button class="d-flex" onclick="borrar_xml_seleccionado(event)" >Borrar</button>
+
+            </div>
+            <!-- ------------------------------------------------------------ -->
+
+        </div> <!-- row -->
+
+    </div> <!-- container-fluid, tm-container-content -->
+    
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/home_js.js' %}"></script>
+    
+    <script>
+        var CSRF_TOKEN = '{{ csrf_token }}'
+        var url_obtener_xml_user = "{% url 'obtener_xml_user' %}"
+        var url_descargar_xml_document = "{% url 'obtener_xml_descargado' 0  %}"
+        var url_borrar_xml_document = "{% url 'borrar_xml_file' %}"
+    </script>
+
+</body>
+</html>
