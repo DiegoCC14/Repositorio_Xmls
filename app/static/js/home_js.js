@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     console.log( "Documento Cargado!" );
     obtener_xml_user( pinta_datos_xmls_user )
+    
 });
 
 function descarga_xml(){
@@ -26,6 +27,12 @@ function descarga_xml(){
 
 function pinta_datos_xmls_user( json_xmls ){
     
+    lista_divs_historial.forEach( divs_ingresados => {
+        divs_ingresados.remove()
+    });
+    
+    lista_divs_historial = []
+    
     json_xmls.forEach( xml_data => {
         let div_xml_historial = $("#Div_XML_Historial").clone()
         $(div_xml_historial).attr("hidden",false)
@@ -37,6 +44,9 @@ function pinta_datos_xmls_user( json_xmls ){
         $(div_xml_historial).find("#id_xml").text( xml_data["id"] )
 
         $( div_xml_historial ).insertBefore("#Div_XML_Historial")
+        
+        lista_divs_historial.push( div_xml_historial )
+
     }); 
 }
 
